@@ -8,15 +8,17 @@ pygame.display.set_caption("Runner")
 clock = pygame.time.Clock()
 font = pygame.font.Font('font/Pixeltype.ttf', 50)
 
-sky_surface = pygame.image.load('graphics/Sky.png').convert()
-ground_surface = pygame.image.load('graphics/ground.png').convert()
-text_surface = font.render('Run!', False, 'Black')
+sky_surf = pygame.image.load('graphics/Sky.png').convert()
+ground_surf = pygame.image.load('graphics/ground.png').convert()
 
-snail_surface = pygame.image.load('graphics/snail/snail1.png').convert_alpha()
-snail_rect = snail_surface.get_rect(midbottom=(600, 300))
+score_surf = font.render('My game!', False, 'Black')
+score_rect = score_surf.get_rect(center=(400, 50))
 
-player_surface = pygame.image.load('graphics/player/player_walk_1.png').convert_alpha()
-player_rect = player_surface.get_rect(midbottom=(80, 300))
+snail_surf = pygame.image.load('graphics/snail/snail1.png').convert_alpha()
+snail_rect = snail_surf.get_rect(midbottom=(600, 300))
+
+player_surf = pygame.image.load('graphics/player/player_walk_1.png').convert_alpha()
+player_rect = player_surf.get_rect(midbottom=(80, 300))
 
 while True:
     for event in pygame.event.get():
@@ -27,16 +29,17 @@ while True:
         #     if player_rect.collidepoint(event.pos):
         #         print('collision')
 
-    screen.blit(sky_surface, (0, 0))
-    screen.blit(ground_surface, (0, 300))
-    screen.blit(text_surface, (300, 50))
+    screen.blit(sky_surf, (0, 0))
+    screen.blit(ground_surf, (0, 300))
+    pygame.draw.rect(screen, 'Pink', score_rect, 6)
+    screen.blit(score_surf, score_rect)
 
     snail_rect.x -= 2
     if snail_rect.x <= -100:
         snail_rect.x = 900
 
-    screen.blit(snail_surface, snail_rect)
-    screen.blit(player_surface, player_rect)
+    screen.blit(snail_surf, snail_rect)
+    screen.blit(player_surf, player_rect)
 
     # if player_rect.colliderect(snail_rect):
         # print("collision")
