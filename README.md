@@ -1,1 +1,1 @@
-# introduction-to-pygame
+# Introduction to Pygame
